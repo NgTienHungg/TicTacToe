@@ -47,7 +47,7 @@ TagManager:
   - name: Board
     uniqueID: 3094276553
     locked: 0
-  - name: Play
+  - name: Cell
     uniqueID: 1636018725
     locked: 0
   - name: UI
