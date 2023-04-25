@@ -1,18 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class UIHome : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    #region Singleton
+    public static UIHome Instance { get; private set; }
+
+    private void Awake() {
+        Instance = this;
+    }
+    #endregion
+
+    [SerializeField] private CanvasGroup _canvasGroup;
+
+    private void Start() {
+        GetComponent<CanvasGroup>().alpha = 1f;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void Close() {
+        gameObject.SetActive(false);
+        _canvasGroup.DOFade(0f, 0.3f).OnComplete(() => {
+            _canvasGroup.interactable = false;
+        });
+    }
+
+    public void OnPvE() {
+        GameControl.Instance.SetMode(EMode.PvE);
+        UIDifficulty.Instance.Open();
+    }
+
+    public void OnPvP() {
+        GameControl.Instance.SetMode(EMode.PvP);
+        this.Close();
+        GameControl.Instance.StartGame();
     }
 }

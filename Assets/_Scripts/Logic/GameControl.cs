@@ -2,6 +2,19 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
+public enum EDifficult
+{
+    Easy,
+    Medium,
+    Hard
+}
+
+public enum EMode
+{
+    PvP,
+    PvE
+}
+
 public class GameControl : MonoBehaviour
 {
     #region  Singleton
@@ -12,28 +25,40 @@ public class GameControl : MonoBehaviour
     }
     #endregion
 
+    public EMode Mode { get; private set; }
+
+    public void SetMode(EMode mode) {
+        this.Mode = mode;
+    }
+
+    public EDifficult Difficult { get; private set; }
+
+    public void SetDifficult(EDifficult mode) {
+        this.Difficult = mode;
+    }
+
     public bool CanDraw { get; private set; }
 
-    private async void Start() {
-        Debug.Log("<color=orange> Init game </color>");
-        await UniTask.DelayFrame(5);
-        Debug.Log("<color=yellow> Start game </color>");
-
+    public void StartGame() {
         this.CanDraw = true;
         TurnBasedControl.Instance.StartWithPlayerTurn();
     }
 
     public async void HandleTurnAsync() {
-        Debug.Log("handle");
-
         // lock để không click được vào các cell khác
         this.CanDraw = false;
 
-        // check xem có hàng nào được ăn không
-        bool endGame = Board.Instance.IsEndGame();
-        if (endGame) {
+        if (Board.Instance.HasWinner()) {
             bool isWin = TurnBasedControl.Instance.CurrentTurn == ETurn.Player;
-            UIResult.Instance.Show(isWin);
+            await UniTask.Delay(500);
+            // chờ vẽ xong mới hiện pop up kết quả
+            await WinLine.Instance.Draw();
+            UIResult.Instance.ShowResult(isWin);
+            return;
+        }
+        else if (Board.Instance.IsFull()) {
+            await UniTask.Delay(800);
+            UIResult.Instance.ShowDraw();
             return;
         }
 

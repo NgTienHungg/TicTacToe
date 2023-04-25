@@ -2,10 +2,10 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPause : MonoBehaviour
+public class UIDifficulty : MonoBehaviour
 {
     #region Singleton
-    public static UIPause Instance { get; private set; }
+    public static UIDifficulty Instance { get; private set; }
 
     private void Awake() {
         Instance = this;
@@ -20,38 +20,51 @@ public class UIPause : MonoBehaviour
         GetComponent<CanvasGroup>().alpha = 1f;
 
         _blackBG.Fade(0f);
+
         _popup.Hide();
+
+        _closeButton.gameObject.SetActive(false);
     }
 
     public void Open() {
-        gameObject.SetActive(true);
-
         _blackBG.DOKill();
         _blackBG.DOFade(1f, 0.5f);
 
         _popup.Open();
 
-        _closeButton.interactable = true;
+        _closeButton.gameObject.SetActive(true);
     }
 
     public void Close() {
         _blackBG.DOKill();
         _blackBG.DOFade(0f, 0.3f).OnComplete(() => {
             _blackBG.raycastTarget = false;
-            gameObject.SetActive(false);
         });
 
         _popup.Close();
 
-        _closeButton.interactable = false;
+        _closeButton.gameObject.SetActive(false);
     }
 
-    public void OnReplayButton() {
-        GameControl.Instance.ReloadScene();
+    public void OnEasyMode() {
+        GameControl.Instance.SetDifficult(EDifficult.Easy);
+        StartPlayGame();
     }
 
-    public void OnHomeButton() {
-        GameControl.Instance.ReloadScene();
+    public void OnMediumMode() {
+        GameControl.Instance.SetDifficult(EDifficult.Medium);
+        StartPlayGame();
+    }
+
+    public void OnHardMode() {
+        GameControl.Instance.SetDifficult(EDifficult.Hard);
+        StartPlayGame();
+    }
+
+    private void StartPlayGame() {
+        this.Close();
+        UIHome.Instance.Close();
+        GameControl.Instance.StartGame();
     }
 
     public void OnCloseButton() {

@@ -18,16 +18,28 @@ public class UIResult : MonoBehaviour
     [Space]
     [SerializeField] private Popup _winPopup;
     [SerializeField] private Popup _losePopup;
+    [SerializeField] private Popup _drawPopup;
 
     private void Start() {
+        GetComponent<CanvasGroup>().alpha = 1f;
+
         _blackPanel.Fade(0f);
         _blackPanel.raycastTarget = false;
 
         _winPopup.Hide();
         _losePopup.Hide();
+        _drawPopup.Hide();
     }
 
-    public void Show(bool isWin) {
+    public void ShowDraw() {
+        _blackPanel.raycastTarget = true;
+        _blackPanel.DOKill();
+        _blackPanel.DOFade(1f, 0.5f);
+
+        _drawPopup.Open();
+    }
+
+    public void ShowResult(bool isWin) {
         _blackPanel.raycastTarget = true;
         _blackPanel.DOKill();
         _blackPanel.DOFade(1f, 0.5f);
@@ -41,7 +53,17 @@ public class UIResult : MonoBehaviour
     public void Hide() {
         if (_winPopup.gameObject.activeInHierarchy)
             _winPopup.Hide();
-        else
+        if (_losePopup.gameObject.activeInHierarchy)
             _losePopup.Hide();
+        if (_drawPopup.gameObject.activeInHierarchy)
+            _drawPopup.Hide();
+    }
+
+    public void OnReplayButton() {
+        GameControl.Instance.ReloadScene();
+    }
+
+    public void OnHomeButton() {
+        GameControl.Instance.ReloadScene();
     }
 }

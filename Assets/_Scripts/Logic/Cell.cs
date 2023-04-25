@@ -31,14 +31,22 @@ public class Cell : MonoBehaviour
         if (!GameControl.Instance.CanDraw)
             return;
 
+        if (GameControl.Instance.Mode == EMode.PvE && TurnBasedControl.Instance.CurrentTurn == ETurn.Opponent)
+            return;
+
+        // Player draw
+        this.Draw(Sign.SignOfTurn(TurnBasedControl.Instance.CurrentTurn));
+
+        // handle turn
+        GameControl.Instance.HandleTurnAsync();
+    }
+
+    public void Draw(ESign sign) {
         // disable collider to can't click on this cell again
         _collider.enabled = false;
 
         // draw sign follow current turn
-        this.Sign.Draw(Sign.SignOfTurn(TurnBasedControl.Instance.CurrentTurn));
+        this.Sign.Draw(sign);
         this.HasSign = true;
-
-        // handle turn
-        GameControl.Instance.HandleTurnAsync();
     }
 }

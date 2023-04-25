@@ -38,5 +38,9 @@ public class TurnBasedControl : MonoBehaviour
         this.CurrentTurn = (CurrentTurn == ETurn.Player) ? ETurn.Opponent : ETurn.Player;
 
         _labelControl.HighlightLabel(CurrentTurn);
+
+        if (GameControl.Instance.Mode == EMode.PvE && this.CurrentTurn == ETurn.Opponent) {
+            AIControl.Instance.BestMove();
+        }
     }
 }
