@@ -18,9 +18,9 @@ public class UIHome : MonoBehaviour
     }
 
     public void Close() {
-        gameObject.SetActive(false);
         _canvasGroup.DOFade(0f, 0.3f).OnComplete(() => {
             _canvasGroup.interactable = false;
+            gameObject.SetActive(false);
         });
     }
 
@@ -32,6 +32,8 @@ public class UIHome : MonoBehaviour
     public void OnPvP() {
         GameControl.Instance.SetMode(EMode.PvP);
         this.Close();
+        UIPlay.Instance.Prepare();
+        UIResult.Instance.Prepare();
         GameControl.Instance.StartGame();
     }
 }

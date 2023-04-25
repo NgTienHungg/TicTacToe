@@ -15,7 +15,7 @@ public class Cell : MonoBehaviour
         this.Reset();
     }
 
-    private void Reset() {
+    public void Reset() {
         _collider.enabled = true;
         this.HasSign = false;
         this.Sign.Hide();

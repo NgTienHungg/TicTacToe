@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Board : MonoBehaviour
 {
@@ -23,6 +23,12 @@ public class Board : MonoBehaviour
 
     private void Start() {
         this.InitCells();
+    }
+
+    public void Reset() {
+        foreach (Cell cell in _cellMatrix) {
+            cell.Reset();
+        }
     }
 
     private void InitCells() {

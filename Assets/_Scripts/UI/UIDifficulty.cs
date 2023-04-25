@@ -64,6 +64,8 @@ public class UIDifficulty : MonoBehaviour
     private void StartPlayGame() {
         this.Close();
         UIHome.Instance.Close();
+        UIPlay.Instance.Prepare();
+        UIResult.Instance.Prepare();
         GameControl.Instance.StartGame();
     }
 

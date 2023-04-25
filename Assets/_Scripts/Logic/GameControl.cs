@@ -37,7 +37,14 @@ public class GameControl : MonoBehaviour
         this.Difficult = mode;
     }
 
-    public bool CanDraw { get; private set; }
+    public bool CanDraw { get; set; }
+
+    public void RestartGame() {
+        Board.Instance.Reset();
+        WinLine.Instance.Reset();
+        this.CanDraw = true;
+        TurnBasedControl.Instance.StartWithPlayerTurn();
+    }
 
     public void StartGame() {
         this.CanDraw = true;

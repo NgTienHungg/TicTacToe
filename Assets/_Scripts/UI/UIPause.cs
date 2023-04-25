@@ -24,6 +24,8 @@ public class UIPause : MonoBehaviour
     }
 
     public void Open() {
+        GameControl.Instance.CanDraw = false;
+
         gameObject.SetActive(true);
 
         _blackBG.DOKill();
@@ -35,6 +37,8 @@ public class UIPause : MonoBehaviour
     }
 
     public void Close() {
+        GameControl.Instance.CanDraw = true;
+
         _blackBG.DOKill();
         _blackBG.DOFade(0f, 0.3f).OnComplete(() => {
             _blackBG.raycastTarget = false;
@@ -47,7 +51,8 @@ public class UIPause : MonoBehaviour
     }
 
     public void OnReplayButton() {
-        GameControl.Instance.ReloadScene();
+        this.Close();
+        GameControl.Instance.RestartGame();
     }
 
     public void OnHomeButton() {

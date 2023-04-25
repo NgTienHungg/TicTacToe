@@ -21,6 +21,7 @@ public class AIControl : MonoBehaviour
         int bestScore = int.MinValue;
         Vector2Int move = Vector2Int.zero;
 
+        // Nếu mode chơi là Easy thì sẽ cho AI đi random 
         if (GameControl.Instance.Difficult == EDifficult.Easy) {
             move = Board.Instance.GetListEmptyPos().Rand();
             goto Draw;
@@ -32,15 +33,21 @@ public class AIControl : MonoBehaviour
             for (int j = 0; j < 3; j++) {
                 // Is the spot available?
                 if (board[i, j] == none) {
+
+                    // Đánh dấu là sẽ đi nước náy
                     board[i, j] = ai;
 
+                    // Kiểm tra xem Mode chơi hiện tại đang ở mức nào để quyết định thuật toán sử dụng
                     int score = 0;
                     if (GameControl.Instance.Difficult == EDifficult.Medium)
                         score = Minimax(board, false);
                     else if (GameControl.Instance.Difficult == EDifficult.Hard)
                         score = Minimax(board, 0, false);
 
+                    // reset coi như chưa đi, duyệt thử tiếp các nước khác
                     board[i, j] = none;
+
+                    // Cập nhật điểm và nước đi tốt nhất
                     if (score > bestScore) {
                         bestScore = score;
                         move = new Vector2Int(i, j);
@@ -48,9 +55,10 @@ public class AIControl : MonoBehaviour
                 }
             }
         }
+
         Debug.Log("best move : " + (move.x + 1) + " _ " + (move.y + 1) + " _ best score : " + bestScore);
 
-    Draw:
+    Draw: // Chờ 0.5s sau đó đi nước tốt nhất theo thuật toán
         await UniTask.Delay(500);
         Board.Instance.Draw(move.x, move.y, ESign.O);
         GameControl.Instance.HandleTurnAsync();

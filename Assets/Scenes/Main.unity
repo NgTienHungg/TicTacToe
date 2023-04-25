@@ -1559,7 +1559,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f00030ffd942b5345bc8f38b283f1b0f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9bf6202f0f565d48af0e76212d88966, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3722,8 +3722,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You draw!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7a66cc866baf10f49a2b690cfddd407d, type: 2}
-  m_sharedMaterial: {fileID: 1434705042366445325, guid: 7a66cc866baf10f49a2b690cfddd407d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8840ddbb3527b2b4ca7b67b29166c547, type: 2}
+  m_sharedMaterial: {fileID: 7429236185967334965, guid: 8840ddbb3527b2b4ca7b67b29166c547, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3747,8 +3747,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 90
+  m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6086,8 +6086,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You lose!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7a66cc866baf10f49a2b690cfddd407d, type: 2}
-  m_sharedMaterial: {fileID: 1434705042366445325, guid: 7a66cc866baf10f49a2b690cfddd407d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8840ddbb3527b2b4ca7b67b29166c547, type: 2}
+  m_sharedMaterial: {fileID: 7429236185967334965, guid: 8840ddbb3527b2b4ca7b67b29166c547, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6111,8 +6111,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 90
+  m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6257,6 +6257,9 @@ MonoBehaviour:
   _winPopup: {fileID: 687326329}
   _losePopup: {fileID: 1557883677}
   _drawPopup: {fileID: 226863835}
+  _winTitle: {fileID: 1762703034}
+  _loseTitle: {fileID: 1078323984}
+  _drawTitle: {fileID: 607924185}
 --- !u!225 &1092210070
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6657,6 +6660,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0c95895b3c9cc41a8a5f512187e498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _title: {fileID: 1432242061}
+  _namePlayer: {fileID: 904210187}
+  _nameOpponent: {fileID: 2013245774}
 --- !u!1 &1176795229
 GameObject:
   m_ObjectHideFlags: 0
@@ -9258,10 +9264,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You win!
+  m_text: Player 1 win!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7a66cc866baf10f49a2b690cfddd407d, type: 2}
-  m_sharedMaterial: {fileID: 1434705042366445325, guid: 7a66cc866baf10f49a2b690cfddd407d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8840ddbb3527b2b4ca7b67b29166c547, type: 2}
+  m_sharedMaterial: {fileID: 7429236185967334965, guid: 8840ddbb3527b2b4ca7b67b29166c547, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9285,8 +9291,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 90
+  m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
