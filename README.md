@@ -146,7 +146,11 @@ Với Minimax có tính depth
 ### 3. Giới thiệu một số hình ảnh về Game.
 
 Figure 1 Màn hình chính của game
+
 Figure 2 Chọn độ khó khi chơi với Bot
+
 Figure 3 Lượt đi của Bot
+
 Figure 4 Người chơi bị thua
+
 Figure 5 Hình ảnh hoà khi chơi 2v2
